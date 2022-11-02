@@ -8,7 +8,10 @@
     'website': "https://www.linkedin.com/in/ismail-mohamedi-605537179",
     'category': 'All',
     'license': 'LGPL-3',
-    'depends': ['base'],
+    'depends': [
+        'base',
+        'web'
+                ],
     'data': [
         'report/base_document_layout.xml',
         'views/views.xml',
