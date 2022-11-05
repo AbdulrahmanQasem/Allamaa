@@ -12,4 +12,4 @@ class ResCompany(models.Model):
     header_width = fields.Char("Header Width", default="1000")
     header_height = fields.Char("Header height", default="150")
     footer_width = fields.Char("Footer Width", default="1000")
-    footer_height = fields.Char("Footer height", default="100")
+    footer_height = fields.Char("Footer height", default="200")
