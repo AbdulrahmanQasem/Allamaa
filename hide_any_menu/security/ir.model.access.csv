@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_field_configuration,access.field.configuration,model_field_configuration,base.group_system,1,1,1,1
+access_button_configuration,access.button.configuration,model_hide_button_config,base.group_system,1,1,1,1
