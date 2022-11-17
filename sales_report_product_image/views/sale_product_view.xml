@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_company_footer_form_inherit" model="ir.ui.view">
+        <field name="name">res.company</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Footer Details" name="html_foteer">
+                    <label for="footer_data">Footer Details</label>
+                    <field name="footer_data" />
+                </page>
+                <page string="HTML Header" name="html_header">
+                    <label for="html_text_header">HTML Header Text</label>
+                    <field name="html_text_header" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_order_image_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.image</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="before">
+                <field name="sale_report_product_image" invisible="1"/>
+                <field name="image_small" widget="image"  attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="before">
+                <field name="sale_report_product_image" invisible="1"/>
+                <field name="image_small" widget="image" height="50" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+            </xpath>
+            <field name="payment_term_id" position="before">
+                <field name="sale_report_product_image" invisible="1"/>
+                <field name="print_image" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+                <field name="image_sizes" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+
+            </field>
+            <xpath expr="//field[@name='order_line']/tree//field[@name='name']" position="after">
+                <field name="technical_description" optional="hide" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="contact_id" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+                <field name="contact_phone" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+                <field name="contract_number" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page string="HTML Header" name="html_header" attrs="{'invisible':[('sale_report_product_image','!=',True)]}">
+                    <label for="html_text_header">HTML Header Text</label>
+                    <field name="html_text_header" />
+                </page>
+                <page string="Contract Bref" name="html_contract_bref" attrs="{'invisible':[('sale_report_product_image','!=',True)]}">
+                    <label for="html_contract_bref">Contract Bref</label>
+                    <field name="html_contract_bref" />
+                </page>
+                <page string="Contract Details" name="html_contract_details" attrs="{'invisible':[('sale_report_product_image','!=',True)]}">
+                    <label for="html_contract_details">Contract Details</label>
+                    <field name="html_contract_details" />
+                </page>
+            </xpath>
+
+            <field name="partner_id" position="replace">
+                <field name="partner_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="mrp_production_form_view_details" model="ir.ui.view">
+        <field name="name">mrp.production</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[1]" position="before">
+
+                 <!-- <field name="product_image" widget='image' class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/> -->
+               <!--   <field name="product_image" widget="image" class="oe_avatar" options="{&quot;zoom&quot;: true, &quot;preview_image&quot;:&quot;image&quot;}"/> -->
+                <field name="sale_report_product_image" invisible="1"/>
+                 <field name="product_image" widget="image" height="50" attrs="{'invisible':[('sale_report_product_image','!=',True)]}"/>
+            </xpath>
+<!--            Commented by Tarek so I can install the module-->
+<!--            <xpath expr="//field[@name='location_dest_id']" position="after">-->
+<!--                 <field name="technical_description"/>-->
+<!--                 <field name="sales_description" string="Sales Description"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='origin']" position="after">-->
+<!--                 <field name="sale_order_line_id"/>-->
+<!--            </xpath>-->
+
+<!--             <xpath expr="//field[@name='order_line']/tree//field[@name='product_id']" position="before">
+                <field name="image_small" widget="image" height="50"/>
+            </xpath>
+            <field name="payment_term_id" position="before">
+                <field name="print_image"/>
+                <field name="image_sizes"/>
+            </field> -->
+        </field>
+    </record>
+
+    <record id="product_template_form_view_manufatoring" model="ir.ui.view">
+        <field name="name">product.template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//group[@name='description']" position="after">
+                <field name="sale_report_product_image" invisible="1"/>
+                <group string="Technical Description" name="technical_description" attrs="{'invisible':[('sale_report_product_image','!=',True)]}">
+                    <field name="technical_description" nolabel="1" placeholder=""/>
+                </group>
+
+            </xpath>
+           
+        </field>
+    </record>
+
+</odoo>

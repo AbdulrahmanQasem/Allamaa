@@ -1,0 +1,267 @@
+<odoo>
+    <data>
+        <report
+            id="report_quotation_organization_prev"
+            name="sales_report_product_image.report_quotation_org_template_prev"
+            model="sale.order"
+            string="Organization Quotation Preview"
+            report_type="qweb-pdf"/>
+        <template id="report_quotation_org_template_prev">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page" dir="rtl" style="font-size:12px">
+                        <t t-foreach="docs" t-as="doc">
+                            <br></br>
+                            <br></br>
+                            <div class="vspace"></div>
+                            <t t-set="currency" t-value="doc.currency_id"/>
+  
+                            <t t-set='company' t-value="True"></t>
+                            <t t-if="company == True">
+                                <link rel="stylesheet" href="/sales_report_product_image/static/src/css/my_style.css"/>
+  
+                                <div class="vspace"></div>
+                                <div>
+                                    <t>
+       
+                                        <table class="column">
+                                            <tr>
+                                                <td style="text-align: right; padding: 4px;" >اسم العميل</td>
+                                                <td style="text-align: center; padding: 4px;" colspan="2">
+                                                    <span t-field="doc.partner_id.name" style="font-size:10px"/>
+                                                </td>
+                                                <td style="text-align: left; padding: 4px;" >Client's Name</td>
+                                            </tr>
+                                            <tr>
+                
+                                                <tr>
+                                                    <td style="text-align: right; padding: 4px;">اسم المسؤول</td>
+                                                    <td  colspan="2" style="text-align: center; padding: 4px;">
+                                                        <span t-field="doc.contact_id.name"  style="font-size:10px"/>
+                                                    </td>
+                                                    <td style="text-align: left; padding: 4px;"> Attention</td>
+                                                </tr>
+                                            </tr>
+                                            <tr>
+                                                <tr>
+                                                    <td style="text-align: right; padding: 4px;">الجوال</td>
+                                                    <td  colspan="2" style="text-align: left; padding: 4px;">
+                                                        <span t-field="doc.contact_id.mobile"  style="font-size:10px"/>
+                                                    </td>
+                                                    <td style="text-align: left; padding: 4px;">Mobile</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: right; padding: 4px;">الايميل</td>
+                                                    <td  colspan="2" style="text-align: left; padding: 4px;">
+                                                        <span t-field="doc.contact_id.email"  style="font-size:10px"/>
+                                                    </td>
+                                                    <td style="text-align: left; padding: 4px;">Email</td>
+                                                </tr>
+                                            </tr>
+                                        </table>
+                                        <div class="space"></div>
+                                        <table class="colleft">
+                                            <tr>
+                                                <tr>
+                                                    <td style="text-align: right; padding: 4px;">رقم العرض</td>
+                                                    <td  colspan="2" style="text-align: left; padding: 4px; width:30%;">
+                                                        <span t-field="doc.name"  style="font-size:10px"/>
+                                                    </td>
+                                                    <td style="text-align: left; padding: 4px;">Offer number</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: right; padding: 4px;">التاريخ</td>
+                                                    <td  colspan="2" style="text-align: left; padding: 4px;">
+                                                        <span t-field="doc.date_order"  style="font-size:10px"/>
+                                                    </td>
+                                                    <td style="text-align: left; padding: 4px;">Date</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td style="text-align: right; padding: 4px;">الموقع</td>
+                                                    <td  colspan="2" style="text-align: left; padding: 4px;">
+
+
+                                             <span t-field="doc.partner_id" 
+
+    t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, 
+
+    &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True}"/>
+                                                          </td>
+                                                    <td style="text-align: left; padding: 4px;">Location</td>
+                                                </tr>
+                                            </tr>
+                                                <tr>
+                                                    <td style="text-align: right; padding: 4px;">تاريخ صلاحية العرض</td>
+                                                    <td  colspan="2" style="text-align: left; padding: 4px;">
+                                                        <span t-field="doc.validity_date" style="font-size:10px"/>
+                                                    </td>
+                                                    <td style="text-align: left; padding: 4px;">Expiration</td>
+
+                                                </tr>
+                                        </table>
+                                        <div class="vspace"></div>
+                                    </t>
+                                    <t t-set="total_tax" t-value="0"/>
+                                    <t t-set="total_discount" t-value="0"/>
+                                    <t t-set="tax_rate" t-value="0"/>
+                                    <div class="vspace"></div>
+                                    <br></br>
+                                    <span t-field="doc.html_text_header"/>
+                                    <br></br>
+                                    <table>
+                                        <div class="vspace"></div>
+
+                                        <tr style="background-color: #adacac; color: white;">
+                                            <td style="text-align: center; padding: 4px;">S.N
+                                                <br/>
+                                                رت
+                                            </td>
+                                            <td style="text-align: center; padding: 4px;">Product Name 
+                                                <br/>اسم الصنف 
+                                            </td>
+                                            <td style="text-align: center; padding: 4px;">Description 
+                                                <br/>اسم الصنف 
+                                            </td>
+                                            <td id="image_perview" style="text-align: center; padding: 4px;">Preview 
+                                                <br/>اللمعاينة
+                                            </td>
+                             <!--                <td style="text-align: center; padding: 4px;">Quantity 
+                                                <br/>الكمية  
+                                            </td>
+                                            <td style="text-align: center; padding: 4px;">Unit Price 
+                                                <br/>سعر الوحدة
+                                            </td>
+                                            <td style="text-align: center; padding: 4px;">Total Price 
+                                                <br/>الاجمالي
+                                            </td> -->
+                                          
+                                        </tr>
+                                        <t t-set="sn" t-value="0"/>
+                                        <t t-set="total_quot" t-value="0"/>
+                                        <t t-foreach="doc.order_line" t-as="line">
+                                            <tr>
+                                                <t t-set="sn" t-value="sn+1"/>
+                                                <!-- <t t-set="tax_rate" t-value="line.tax_ids.amount * line.price_subtotal / 100"/> -->
+                                                <!-- <t t-set="subvat" t-value="line.price_subtotal + tax_rate"/> -->
+                                                <!-- <t t-set="total_discount" t-value="total_discount + line.discount"/> -->
+                                                <!-- <t t-set="total_tax" t-value="total_tax + tax_rate"/> -->
+                                                <t t-set="total_quot" t-value="total_quot + (line.price_unit * line.product_uom_qty)"/>
+                                                <td style="text-align: center; padding: 4px;">
+                                                    <span t-esc="sn" style="font-size:10px"/>
+                                                </td>
+                                                <td style="text-align: center; padding: 4px;">
+                                                    <span t-esc="line.product_id.name" style="font-size:10px"/>
+                                                </td>
+                                                <td style="text-align: center; padding: 4px;">
+                                                    <span t-field="line.name" style="font-size:10px"/>
+                                                </td>
+                                                <!-- <td style="text-align: center; padding: 4px;"> -->
+            <t t-if="doc.image_sizes == 'image' and doc.print_image ">
+                <td class="text-center">
+                    <img t-if="line.image_small" t-attf-src="data:image/*;base64,{{line.image_small}}" style="resize:both;width:98%;height:auto"/>
+                </td>
+            </t>
+            <t t-if="doc.image_sizes == 'image_medium' and doc.print_image">
+                <td class="text-center">
+                    <img t-if="line.image_small" t-attf-src="data:image/*;base64,{{line.image_small}}" style="resize:both;width:70%;height:auto"/>
+                </td>
+            </t>
+            <t t-if="doc.image_sizes == 'image_small' and doc.print_image ">
+                <td class="text-center">
+                    <img t-if="line.image_small" t-attf-src="data:image/*;base64,{{line.image_small}}" style="resize:both;width:50%;height:auto"/>
+                </td>
+            </t>
+                                                    
+                                                    
+                                                <!-- </td> -->
+                                   <!--              <td style="text-align: center; padding: 4px;">
+                                                    <span t-field="line.product_uom_qty" style="font-size:10px"/>
+                                                </td>
+                                                <td style="text-align: center; padding: 4px;">
+                                                    <span style="font-size:10px">
+                                                        <t t-esc="round(line.price_unit)"/>
+                                                    </span>
+                                                </td>
+                                                <td style="text-align: center; padding: 4px;">
+                                                    <span style="font-size:10px">
+                                                        <t t-esc="round(line.price_unit * line.product_uom_qty,2)"/>
+                                                    </span>
+                                                </td> -->
+
+                                            </tr>
+                                        </t>
+                                    </table>
+                                    <div class="vspace"></div>
+             <!--                        <table>
+                                        <tr style="background-color: #808080; color: white;">
+                                            <td style="text-align: center; padding: 2px;" colspan="3">إجمالي المبيعات  Total Amount</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right; padding: 4px;">الإجمالي (غير شامل ضريبة القيمة المضافة)</td>
+                                            <td style="text-align: center; padding: 4px;">
+                                                <span style="font-size:10px">
+                                                    <t t-esc="round(total_quot, 2)"/>
+                                                </span>
+                                            </td>
+                                            <td style="text-align: left; padding: 4px;">Total (Excluding VAT)</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right; padding: 4px;">مجموع الخصومات</td>
+                                            <td style="text-align: center; padding: 4px;">
+                                                <span t-esc="round(total_quot - doc.amount_untaxed, 2)" style="font-size:10px"/>
+                                            </td>
+                                            <td style="text-align: left; padding: 4px;">Discounts</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right; padding: 4px;">الإجمالي الخاضع الضريبة (غير شامل ضريبة القيمة المضافة)</td>
+                                            <td style="text-align: center; padding: 4px;">
+                                                <span style="font-size:10px">
+                                                    <t t-esc="round(doc.amount_untaxed, 2)"/>
+                                                </span>
+                                            </td>
+                                            <td style="text-align: left; padding: 4px;">Total Taxable (Excluding VAT)</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right; padding: 4px;">مجموع ضريبة القيمة المضافة</td>
+                                            <td style="text-align: center; padding: 4px;">
+                                                <span style="font-size: 10px">
+                                                    <t t-esc="round(doc.amount_total - doc.amount_untaxed, 2)"/>
+                                                </span>
+
+                                            </td>
+                                            <td style="text-align: left; padding: 4px;">Total VAT</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right; padding: 4px;">الصافي</td>
+                                            <td style="text-align: center; padding: 4px;">
+                                                <span style="font-size:10px">
+                                                    <t t-esc="round(doc.amount_total, 2)"/>
+                                                </span>
+                                            </td>
+                                            <td style="text-align: left; padding: 4px;">Net</td>
+                                        </tr>
+                                    </table> -->
+                                    <span t-field="doc.sh_html_notes"/>
+                                </div>
+                            </t>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+<!--         <template id="external_layout_header_inherit_cr" 
+            inherit_id="web.external_layout_standard">
+            <xpath expr="//div[@name='company_address']" position="replace"> -->
+                <!-- <div class="header"> -->
+                    <!-- code -->
+                    <!-- <P>000000000000000000</P> -->
+                <!-- </div> -->
+        <!--     </xpath>
+        </template> -->
+ 
+
+
+    </data>
+</odoo>

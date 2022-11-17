@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@t-field='doc.partner_id']" position="after">
+            <t t-if="doc.contact_id">
+                <p>Contact Name: <t t-esc="doc.contact_id.name"/></p>
+
+                <p>Contact Phone: <t t-esc="doc.contact_id.phone"/></p>
+            </t>
+            
+        </xpath>
+        <xpath expr="//table[hasclass('o_main_table')]/thead/tr/th[1]" position="before">
+            <t t-if="doc.print_image and doc.image_sizes in ('image', 'image_medium', 'image_small') ">
+                <th style="width:15%;">Product Image</th>
+            </t>
+        </xpath>
+        <xpath expr="//table/tbody[hasclass('sale_tbody')]/t[2]/tr/t/td[1]" position="before">
+            <t t-if="doc.image_sizes == 'image' and doc.print_image ">
+                <td class="text-center">
+                    <img t-if="line.image_small" t-attf-src="data:image/*;base64,{{line.image_small}}" style="resize:both;width:95%;height:auto"/>
+                </td>
+            </t>
+            <t t-if="doc.image_sizes == 'image_medium' and doc.print_image">
+                <td class="text-center">
+                    <img t-if="line.image_small" t-attf-src="data:image/*;base64,{{line.image_small}}" style="resize:both;width:70%;height:auto"/>
+                </td>
+            </t>
+            <t t-if="doc.image_sizes == 'image_small' and doc.print_image ">
+                <td class="text-center">
+                    <img t-if="line.image_small" t-attf-src="data:image/*;base64,{{line.image_small}}" style="resize:both;width:50%;height:auto"/>
+                </td>
+            </t>
+        </xpath>
+<!--        Commented by Tarek so I can install the module-->
+<!--        <xpath expr="//tr[hasclass('o_total')]" position="after">-->
+<!--            <td name="td_amount_total_label"><strong>Total in Words</strong></td>-->
+
+<!--                <td name="td_text_amount_total" class="text-right">-->
+<!--                <strong><span t-field="doc.text_amount"/></strong>-->
+<!--            </td>-->
+<!--        </xpath>-->
+    </template>
+
+
+    <template id="external_layout_quot_with_logo" inherit_id="web.external_layout_striped">
+        <xpath expr="//div[@t-att-style='report_header_style']" position="replace">
+            <div class="header">
+            <div class="o_clean_header">
+            <div class="row">
+<!--                 <div class="col-8 offset-1" name="company_address">
+                    <ul class="list-unstyled">
+                        <strong><li><span style="font-size:20px;">عرض السعر</span></li></strong>
+                        <strong><li><span style="font-size:20px;">QUOTATION</span></li></strong>
+                    </ul>
+                </div> -->
+            <div class="col-9 float-left company_address" name="company_address">
+                <div>
+                    <strong t-field="company.partner_id.name"/>
+                </div>
+                <span t-field="company.partner_id"
+                    t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+            </div>
+                <div class="col-3 float-right">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="with:350px;heigh:auto" alt="Logo" />
+                </div>
+            </div>
+            </div>
+        </div>
+                    <div class="clearfix mb8"/>
+           
+        </xpath>
+
+    </template>
+
+    <template id="external_layout_quot_logo">
+        <div class="header">
+            <div class="o_clean_header">
+            <div class="row">
+                <div class="col-8 offset-1" name="company_address">
+                    <ul class="list-unstyled">
+                        <strong><li><span style="font-size:20px;">عرض السعر</span></li></strong>
+                        <strong><li><span style="font-size:20px;">QUOTATION</span></li></strong>
+                    </ul>
+                </div>
+                <div class="col-4 offset-1">
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo" />
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="article o_report_layout_clean" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div class="footer o_clean_footer">
+            <div class="row mt8">
+                <div class="col-3">
+                    <span t-field="company.report_footer"/>
+                </div>
+                <div class="col-4 text-right">
+                    <span class="company_address" t-field="company.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: true}"/>
+                </div>
+                <div class="col-4">
+                    <h4 class="mt0 mb0 text-uppercase" t-field="company.report_header"/>
+                </div>
+                <div class="col-1">
+                    <ul t-if="report_type == 'pdf'" class="list-inline pagenumber float-right text-center">
+                        <li class="list-inline-item"><strong><span class="page"/></strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="external_layout_custom_img_style" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[hasclass('col-3')]/img" position="attributes">
+            <attribute name="style">max-height: 64px;</attribute>
+        </xpath>
+    </template>
+
+    <report 
+        id="sale.action_report_saleorder"
+        string="Quotation / Order"
+        model="sale.order" 
+        report_type="qweb-pdf"
+        file="sale.report_saleorder" 
+        name="sale.report_saleorder"
+        print_report_name="(object.state in ('draft', 'sent') and '%s Quotation -  %s' % (object.partner_id.name,object.name)) or '%s Order - %s' % (object.partner_id.name,object.name)"
+    />
+
+</odoo>

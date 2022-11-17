@@ -1,0 +1,105 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  margin-left:-5px;
+  margin-right:-5px;
+}
+  
+.column {
+  float: right;
+  width: 48%;
+  padding: 5px;
+}
+
+.colleft {
+  float: left;
+  width: 48%;
+  padding: 5px;
+}
+
+.right_column_same {
+  float: right;
+  width: 50%;
+
+}
+
+.left_column_same {
+  float: left;
+  width: 50%;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+#center, #space{
+    position: relative;
+    display: inline-block;
+    margin: 1em 0.1em 0.1em 0.8%;
+    padding: 0.1em;
+    border: 0px solid black;
+}
+
+#left {
+    position: relative;
+    display: inline-block;
+    width: 52%;
+    float: left;
+    border: 0px solid black;
+  
+}
+
+#center {
+    width: 52%;
+}
+
+#right {
+    position: relative;
+    display: inline-block;
+    border: 1px solid black;
+    text-align: right;
+    width: 15%;
+    float: right;
+}
+#right_img {
+   /* position: relative;
+    display: inline-block;*/
+    display:block;
+    margin:auto;
+    border: 0px solid black;
+    text-align: center;
+    width: 15%;
+    /*float: right;*/
+    padding-bottom: 2px;
+}
+#space{
+    height: 5%;
+    width: 5%;
+    padding: 10px;
+    border: 0px;
+}
+
+.vspace{
+    height: 5%;
+    padding: 10px;
+    border: 0;
+}
+
+td {
+    border: 1px solid #999;
+    width: auto ;
+  
+}
