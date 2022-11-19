@@ -7,12 +7,12 @@
         <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@id='no_edit_order']" position="after">
-                <div class="col-12 col-lg-6 o_setting_box" id="show_sale_report_product_image">
+                <div class="col-12 col-lg-6 o_setting_box" id="show_image">
                     <div class="o_setting_left_pane">
-                        <field name="sale_report_product_image"/>
+                        <field name="show_product_image"/>
                     </div>
                     <div class="o_setting_right_pane">
-                        <label for="sale_report_product_image"/>
+                        <label for="show_product_image"/>
                         <div class="text-muted">
                             Show Sale Report Product Image
                         </div>

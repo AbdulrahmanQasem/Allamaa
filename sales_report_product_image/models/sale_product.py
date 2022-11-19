@@ -32,11 +32,8 @@ class SaleOrder(models.Model):
     contact_phone = fields.Char()
     html_text_header = fields.Html()
     text_amount = fields.Char(string="Montant en lettre", required=False, compute="amount_to_words" )
-    sale_report_product_image = fields.Boolean(compute='show_product_image')
+    show_product_image = fields.Boolean(default=lambda self: self.env.company.show_product_image, )
 
-    def show_product_image(self):
-        for rec in self:
-            rec.sale_report_product_image = self.env.company.sale_report_product_image
 
     @api.onchange('company_id')
     def change_company(self):
@@ -79,11 +76,8 @@ class SaleOrderLine(models.Model):
 
     image_small = fields.Binary("Product Image")
     technical_description = fields.Html()
-    sale_report_product_image = fields.Boolean(compute='show_product_image' )
+    show_product_image = fields.Boolean(default=lambda self: self.env.company.show_product_image, )
 
-    def show_product_image(self):
-        for rec in self:
-            rec.sale_report_product_image = self.env.company.sale_report_product_image
 
     @api.onchange('product_id')
     def _change_image(self):
@@ -103,28 +97,19 @@ class StockMove(models.Model):
     # sales_description = fields.Text(related='sale_order_line_id.name')
     sales_description = fields.Text('Sales Description')
     sale_order_line_id = fields.Many2one('sale.order.line')
-    sale_report_product_image = fields.Boolean(compute='show_product_image')
+    show_product_image = fields.Boolean(default=lambda self: self.env.company.show_product_image, )
 
-    def show_product_image(self):
-        for rec in self:
-            rec.sale_report_product_image = self.env.company.sale_report_product_image
 
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
     technical_description = fields.Html()
-    sale_report_product_image = fields.Boolean(compute='show_product_image')
+    show_product_image = fields.Boolean(default=lambda self: self.env.company.show_product_image, )
 
-    def show_product_image(self):
-        for rec in self:
-            rec.sale_report_product_image = self.env.company.sale_report_product_image
 
 
 class ProductProduct(models.Model):
     _inherit = 'product.product'
     technical_description = fields.Html()
-    sale_report_product_image = fields.Boolean(compute='show_product_image')
+    show_product_image = fields.Boolean(default=lambda self: self.env.company.show_product_image, )
 
-    def show_product_image(self):
-        for rec in self:
-            rec.sale_report_product_image = self.env.company.sale_report_product_image
