@@ -39,7 +39,7 @@
                 <div class="row mt16 o_settings_container">
                     <div class="col-12 col-lg-6 o_setting_box">
                         <div>
-                            <field name="html_notes" />
+                            <field name="html_notes" options="{'collaborative' : true, 'resizable' : true, 'codeview': true}" />
                         </div>
                     </div>
                 </div>
