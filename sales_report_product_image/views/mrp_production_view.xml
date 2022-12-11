@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_mrp_production_form_inherit" model="ir.ui.view">
+        <field name="name">View Mrp Production Form</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="show_image" invisible="1"/>
+                <div class="row">
+                    <field name="image_product" widget="image" height="50" attrs="{'invisible': [('show_image', '=', False)]}"/>
+                </div>
+            </field>
+            <field name="company_id" position="after">
+                <field name="crate_from_so" invisible="1"/>
+                <field name="sale_order_id"/>
+                <field name="so_partner_id"/>
+                <field name="sale_line_id"/>
+            </field>
+            <xpath expr="//page[@name='miscellaneous']/group//field[@name='origin']" position="after">
+                <field name="tech_description" attrs="{'invisible': [('show_image', '=', False)]}"/>
+                <field name="sale_description" attrs="{'invisible': [('show_image', '=', False)]}"/>
+            </xpath>
+
+        </field>
+    </record>
+    
+    <record id="so_mrp_production_tree_view" model="ir.ui.view">
+        <field name="name">mrp.production</field>
+        <field name="model">mrp.production</field>
+        <field name="inherit_id" ref="mrp.mrp_production_tree_view"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//field[@name='bom_id']" position="before">
+                 <field name="sale_order_id"/>
+                <field name="so_partner_id"/>
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>
+
