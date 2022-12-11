@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- 	sale order template form view inherited-->
+    <record id="sh_sale_order_template_form_view_inherit_html_note" model="ir.ui.view">
+        <field name="name">sale.order.template.inherit</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[last()]" position="after">
+                <page string="HTML Notes" name="html_note">
+                    <label for="sh_html_notes">HTML Notes</label>
+                    <field name="sh_html_notes" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="sale_order_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="HTML Notes" name="html_note">
+                    <label for="sh_html_notes">HTML Notes</label>
+                    <field name="sh_html_notes" />
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sh_sale_confi_setting" model="ir.ui.view">
+        <field name="name">sh_sale.res.config.setting</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']" position="inside">
+                <h2>HTML Notes</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div>
+                            <field name="html_notes" options="{'collaborative' : true, 'resizable' : true, 'codeview': true}" />
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
