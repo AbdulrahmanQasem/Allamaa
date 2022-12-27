@@ -19,7 +19,7 @@
                                 <field name="header_height" required="1"/>
                             </div>
                             <div class="o_row">
-                                <field name="footer" widget="image" class="float-left oe_avatar"
+                                <field name="footer" widget="image" class="float-right oe_avatar"
                                        options="{'size': [300, 80]}" required="1"/>
                                 <field name="footer_width" required="1"/>
                                 <span>,</span>
