@@ -13,14 +13,14 @@
                         <page string="Header &amp; Footer Layout">
                             <div class="o_row">
                                 <field name="header" widget="image" class="float-left oe_avatar"
-                                       options="{'size': [300, 80]}" required="1"/>
+                                       options="{'size': [300, 80]}" />
                                 <field name="header_width" required="1"/>
                                 <span>,</span>
                                 <field name="header_height" required="1"/>
                             </div>
                             <div class="o_row">
                                 <field name="footer" widget="image" class="float-left oe_avatar"
-                                       options="{'size': [300, 80]}" required="1"/>
+                                       options="{'size': [300, 80]}" />
                                 <field name="footer_width" required="1"/>
                                 <span>,</span>
                                 <field name="footer_height" required="1"/>
