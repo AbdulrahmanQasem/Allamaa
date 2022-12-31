@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="einv_external_layout_bold" inherit_id="web.external_layout_bold">
+            <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
+                <div class="header" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.header)"
+                         t-att-width="company.header_width" t-att-height="company.header_height"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[contains(@t-attf-class,'footer')]" position="replace">
+                <div class="footer" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.footer)"
+                         t-att-width="company.footer_width" t-att-height="company.footer_height"/>
+                </div>
+            </xpath>
+        </template>
+        <template id="einv_external_layout_standard" inherit_id="web.external_layout_standard">
+            <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
+                <div class="header" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.header)"
+                         t-att-width="company.header_width" t-att-height="company.header_height"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[contains(@t-attf-class,'footer')]" position="replace">
+                <div class="footer" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.footer)"
+                         t-att-width="company.footer_width" t-att-height="company.footer_height"/>
+                </div>
+            </xpath>
+        </template>
+        <template id="einv_external_layout_boxed" inherit_id="web.external_layout_boxed">
+            <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
+                <div class="header" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.header)"
+                         t-att-width="company.header_width" t-att-height="company.header_height"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[contains(@t-attf-class,'footer')]" position="replace">
+                <div class="footer" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.footer)"
+                         t-att-width="company.footer_width" t-att-height="company.footer_height"/>
+                </div>
+            </xpath>
+        </template>
+        <template id="einv_external_layout_striped" inherit_id="web.external_layout_striped">
+            <xpath expr="//div[contains(@t-attf-class, 'header')]" position="replace">
+                <div class="header" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.header)"
+                         t-att-width="company.header_width" t-att-height="company.header_height"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//div[contains(@t-attf-class,'footer')]" position="replace">
+                <div class="footer" style="width: 100%;height: 100%;">
+                    <img t-att-src="'data:image/*;base64,%s' % to_text(company.footer)"
+                         t-att-width="company.footer_width" t-att-height="company.footer_height"/>
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>
