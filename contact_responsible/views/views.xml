@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_order_contact_form_inherit" model="ir.ui.view">
+        <field name="name">sale.order.form.sale.contact</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="sale_order_template_id" position="after">
+                <field name="contact_partner_id"/>
+                <field name="contact_phone"/>
+                <field name="contract_number"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>
