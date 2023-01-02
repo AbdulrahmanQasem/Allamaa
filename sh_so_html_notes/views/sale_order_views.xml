@@ -23,7 +23,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="HTML Notes" name="html_note">
                     <label for="sh_html_notes">HTML Notes</label>
-                    <field name="sh_html_notes" />
+                    <field name="sh_html_notes" options="{'codeview': true}" />
                 </page>
             </xpath>
         </field>
