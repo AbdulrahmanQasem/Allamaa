@@ -1,0 +1,17 @@
+<odoo>
+    <record id="view_asset_qrcode_account_asset_form" model="ir.ui.view">
+        <field name="name">account.asset.form</field>
+        <field name="model">account.asset</field>
+        <field name="inherit_id" ref="account_asset.view_account_asset_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='first_depreciation_date']" position="after">
+                <field name="ref"/>
+                <field name="location_id"/>
+                <field name="last_check"/>
+                <field name="contact_mobile"/>
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>

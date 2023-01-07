@@ -1,0 +1,71 @@
+<odoo>
+
+
+    <template id="report_asset_qrcode_document">
+        <t t-call="web.basic_layout">
+            <div class="page">
+                <div style="width: 400px">
+
+<!--           company name div           -->
+                    <div style="width: 48%; text-align: right;"  class="pull-right" dir="rtl">
+                        <li>
+                        <span t-field="o.company_id"/>
+                        </li>
+                        <li>
+                            <span t-field="o.name"/>
+                        </li>
+                        <li>
+                            <span t-field="o.location_id"/>
+                        </li>
+                    </div> 
+                                        <!--           QR code div           -->
+                      <div style="width: 50%">
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR',o.qrcode_info(), 160,160)"/>
+                    </div>
+                </div>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="report_asset_qrcode">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="asset_qrcode.report_asset_qrcode_document"/>
+            </t>
+        </t>
+    </template>
+    
+<!--    page size, You have to change this parameters based on label size  -->
+    <record id="action_report_asset_qrcode" model="ir.actions.report">
+        <field name="name">QR Code</field>
+        <field name="model">account.asset</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">asset_qrcode.report_asset_qrcode</field>
+        <field name="report_file">asset_qrcode.report_asset_qrcode</field>
+        <field name="binding_model_id" ref="account_asset.model_account_asset"/>
+        <field name="binding_type">report</field>
+    </record>
+
+
+    <record id="paperformat_asset_qrcode" model="report.paperformat">
+        <field name="name">Assets QRcode</field>
+        <field name="default" eval="True"/>
+        <field name="format">custom</field>
+        <field name="page_height">35</field>
+        <field name="page_width">75</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">2</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">2</field>
+        <field name="margin_right">2</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <record id="asset_qrcode.action_report_asset_qrcode" model="ir.actions.report">
+        <field name="paperformat_id" ref="asset_qrcode.paperformat_asset_qrcode"/>
+    </record>
+
+</odoo>
