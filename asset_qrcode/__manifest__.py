@@ -2,7 +2,8 @@
 
 {
     'name': 'Assets QR Code',
-    'version': '14.0.2.0.0',
+    "version": "15.0.1.0.0",
+    "license": "LGPL-3",
     'summary': 'Print QR Code Assets.',
     'category': 'Uncategorized',
     'author': '',
