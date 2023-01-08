@@ -2,6 +2,7 @@
 {
     "name": "contact responsible",
     "version": "15.0.1.0.0",
+    "license": "LGPL-3",
     "sequence": "1",
     "author": "ENG. ABDULRAHMAN",
     "depends": [
