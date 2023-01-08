@@ -1,5 +1,5 @@
 {
-    'name': 'Copy Sale and Purchase Order Line',
+    'name': 'Copy Sale Order Line',
     "version": "15.0.1.0.0",
     "license": "LGPL-3",
     'summary': 'Copy and duplicate sale order line ',
