@@ -16,7 +16,8 @@ Orden de venta HTML Notas Odoo
 Crear nota HTML de ventas, módulo de notas HTML de orden de venta, generar nota HTML SO con imagen, crear nota HTML de cotización con archivo adjunto, imprimir nota HTML de ventas en informe, hacer notas HTML con términos y condiciones Odoo
  Crear aplicación de notas HTML de ventas, crear módulo de notas de pedidos de venta, generar notas SO con imágenes, crear notas HTML de citas, imprimir notas HTML de ventas, términos y condiciones Notas HTML Odoo
                     """,     
-    "version":"13.0.3",
+    "version": "15.0.1.0.0",
+    "license": "LGPL-3",
     "depends" : ["sale_management"],
     "application" : True,
     "data" : [
@@ -27,5 +28,5 @@ Crear nota HTML de ventas, módulo de notas HTML de orden de venta, generar nota
     "auto_install":False,
     "installable" : True,  
     "price": 15,
-    "currency": "EUR"      
+        
 }
