@@ -14,7 +14,7 @@
     # for the full list
     'category': 'Whatsapp',
     'version': '15.0.1.0.0',
-    'license': 'LGPL-3'
+    'license': 'LGPL-3',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'web', 'stock', 'purchase','account','contacts'],
