@@ -26,7 +26,7 @@ class SaleOrderValidation(models.Model):
         return pdf_url
 
     def sale_whatsapp(self):
-        record_phone = self.partner_id.mobile or self self.partner_id.phone or self.contact_phone
+        record_phone = self.partner_id.mobile
         if not record_phone:
             view = self.env.ref('odoo_whatsapp_integration.warn_message_wizard')
             view_id = view and view.id or False
